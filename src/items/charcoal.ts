@@ -2,7 +2,7 @@ import { MR2Globals } from "magic-research-2-modding-sdk";
 import { EnemyLoot } from "magic-research-2-modding-sdk/modding-decs/backend/exploration/enemies/Enemy";
 import { GameState } from "magic-research-2-modding-sdk/modding-decs/backend/GameState";
 import { Item, ItemParams } from "magic-research-2-modding-sdk/modding-decs/backend/items/Item";
-import { ItemTagEnum } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
+import { ItemTagEnum, TransmutationCategory } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
 import { Resource } from "magic-research-2-modding-sdk/modding-decs/backend/Resources";
 import { SpellElement, SpellElementType } from "magic-research-2-modding-sdk/modding-decs/backend/spells/Elements";
 
@@ -18,6 +18,7 @@ export function modItem(MR2: MR2Globals) {
   const modItemName="Charcoal";
   const modItemDesc="A chunk of charcoal. Typically made from burnt wood";
   const modItemTemplate="thickHide";
+  const modItemCategory="EnhancementMaterial";
   const modItemBasePrice=250;
   const modItemElement=MR2.SpellElement.Fire;
 
@@ -66,11 +67,11 @@ export function modItem(MR2: MR2Globals) {
         itemId: modItemId,
         amount: table.amount,
         chance: table.chance,
-      }
+      };
       if(!loot.some(loot => loot.itemId === newItem.itemId))
         loot.push(newItem);
       return loot;
-    }
+    };
   });
 
   class modItem extends (MR2.Item) {
@@ -94,6 +95,9 @@ export function modItem(MR2: MR2Globals) {
     }
     getBaseSalePrice(state: GameState, params: ItemParams): number {
       return modItemBasePrice;
+    }
+    getTransmutationCategory(): TransmutationCategory {
+      return modItemCategory;
     }
   }
   const modItemSingleton=new modItem();

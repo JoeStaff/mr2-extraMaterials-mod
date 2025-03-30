@@ -19,6 +19,7 @@ export function modItem(MR2: MR2Globals) {
   const modItemName="Zinc Ingot";
   const modItemDesc="Processed Zinc Ore. Probably not best used for equipment in this state.";
   const modItemTemplate="copperIngot";
+  const modItemCategory="Ingot";
   const modItemBasePrice=550;
   const modItemElement=MR2.SpellElement.Fire;
 
@@ -42,6 +43,7 @@ export function modItem(MR2: MR2Globals) {
       chance: 1
     }
   ];
+
   modItemDropTable.forEach(table => {
     const originalFunction=MR2.Enemies.getById(table.enemy).getItemsAwardedBase;
     MR2.Enemies.getById(table.enemy).getItemsAwardedBase=(state:GameState)=>{
@@ -50,11 +52,11 @@ export function modItem(MR2: MR2Globals) {
         itemId: modItemId,
         amount: table.amount,
         chance: table.chance,
-      }
+      };
       if(!loot.some(loot => loot.itemId === newItem.itemId))
         loot.push(newItem);
       return loot;
-    }
+    };
   });
 
   class modItem extends (MR2.Item) {
@@ -78,6 +80,9 @@ export function modItem(MR2: MR2Globals) {
     }
     getBaseSalePrice(state: GameState, params: ItemParams): number {
       return modItemBasePrice;
+    }
+    getTransmutationCategory(): TransmutationCategory {
+      return modItemCategory;
     }
   }
   const modItemSingleton=new modItem();

@@ -16,6 +16,12 @@ export interface modItemDrop {
 }
 
 export function load(MR2: MR2Globals) {
+  //Enemy ID finder, case sensitive
+  // MR2.Enemies.getAll().forEach(enemy => {
+  //   if(enemy.getName().includes("mp"))
+  //     MR2.alert(enemy.getName()+' '+enemy.getId());
+  // })
+
   zincOre(MR2);
   zincIngot(MR2);
   bronzeIngot(MR2);

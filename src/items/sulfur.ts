@@ -2,7 +2,7 @@ import { MR2Globals } from "magic-research-2-modding-sdk";
 import { EnemyLoot } from "magic-research-2-modding-sdk/modding-decs/backend/exploration/enemies/Enemy";
 import { GameState } from "magic-research-2-modding-sdk/modding-decs/backend/GameState";
 import { Item, ItemParams } from "magic-research-2-modding-sdk/modding-decs/backend/items/Item";
-import { ItemTagEnum } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
+import { ItemTagEnum, TransmutationCategory } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
 import { Resource } from "magic-research-2-modding-sdk/modding-decs/backend/Resources";
 import { SpellElement, SpellElementType } from "magic-research-2-modding-sdk/modding-decs/backend/spells/Elements";
 import { modItemDrop } from "../extraMaterialsMod";
@@ -19,6 +19,7 @@ export function modItem(MR2: MR2Globals) {
   const modItemName="Sulfur";
   const modItemDesc="A small pile of sulfer. A naturally volcanic element most commonly identified from its smell.";
   const modItemTemplate="venomPowder";
+  const modItemCategory="EnhancementMaterial";
   const modItemBasePrice=250;
   const modItemElement=MR2.SpellElement.Fire;
 
@@ -32,12 +33,9 @@ export function modItem(MR2: MR2Globals) {
       FireEssence: 25000,
       EarthEssence: 25000,
     },
-    items: {
-    },
+    items: {},
   };
 
-  const modItemDropAmount=1;
-  const modItemDropChance=0.1;
   const modItemDropTable: modItemDrop[]=[
     {
       enemy:"blazingTurtle",
@@ -45,7 +43,7 @@ export function modItem(MR2: MR2Globals) {
       chance:1
     },
     {
-      enemy:"mummy",
+      enemy:"Mummy",
       amount:2,
       chance:0.1
     },
@@ -65,26 +63,26 @@ export function modItem(MR2: MR2Globals) {
       chance:0.1
     },
     {
-      enemy:"flamingBones",
+      enemy:"flamingbones",
       amount:3,
       chance:1
     },
   ];
 
-  for(let enemy in modItemDropTable){
-    const originalFunction=MR2.Enemies.getById(enemy).getItemsAwardedBase;
-    MR2.Enemies.getById(enemy).getItemsAwardedBase=(state:GameState)=>{
+  modItemDropTable.forEach(table => {
+    const originalFunction=MR2.Enemies.getById(table.enemy).getItemsAwardedBase;
+    MR2.Enemies.getById(table.enemy).getItemsAwardedBase=(state:GameState)=>{
       const loot = originalFunction.call(this,state);
       const newItem: EnemyLoot ={
         itemId: modItemId,
-        amount: modItemDropAmount,
-        chance: modItemDropChance,
-      }
+        amount: table.amount,
+        chance: table.chance,
+      };
       if(!loot.some(loot => loot.itemId === newItem.itemId))
         loot.push(newItem);
       return loot;
-    }
-  };
+    };
+  });
 
   class modItem extends (MR2.Item) {
     getId(): string {
@@ -107,6 +105,9 @@ export function modItem(MR2: MR2Globals) {
     }
     getBaseSalePrice(state: GameState, params: ItemParams): number {
       return modItemBasePrice;
+    }
+    getTransmutationCategory(): TransmutationCategory {
+      return modItemCategory;
     }
   }
   const modItemSingleton=new modItem();

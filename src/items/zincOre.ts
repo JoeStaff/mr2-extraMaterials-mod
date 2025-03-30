@@ -2,7 +2,7 @@ import { MR2Globals } from "magic-research-2-modding-sdk";
 import { EnemyLoot } from "magic-research-2-modding-sdk/modding-decs/backend/exploration/enemies/Enemy";
 import { GameState } from "magic-research-2-modding-sdk/modding-decs/backend/GameState";
 import { Item, ItemParams } from "magic-research-2-modding-sdk/modding-decs/backend/items/Item";
-import { ItemTagEnum } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
+import { ItemTagEnum, TransmutationCategory } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
 import { Resource } from "magic-research-2-modding-sdk/modding-decs/backend/Resources";
 import { SpellElement, SpellElementType } from "magic-research-2-modding-sdk/modding-decs/backend/spells/Elements";
 import { modItemDrop } from "../extraMaterialsMod";
@@ -19,6 +19,7 @@ export function modItem(MR2: MR2Globals) {
   const modItemName="Zinc Ore";
   const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
   const modItemTemplate="copperOre";
+  const modItemCategory="Ore";
   const modItemBasePrice=62;
   const modItemElement=MR2.SpellElement.Earth;
 
@@ -64,11 +65,11 @@ export function modItem(MR2: MR2Globals) {
         itemId: modItemId,
         amount: table.amount,
         chance: table.chance,
-      }
+      };
       if(!loot.some(loot => loot.itemId === newItem.itemId))
         loot.push(newItem);
       return loot;
-    }
+    };
   });
 
   class modItem extends (MR2.Item) {
@@ -92,6 +93,9 @@ export function modItem(MR2: MR2Globals) {
     }
     getBaseSalePrice(state: GameState, params: ItemParams): number {
       return modItemBasePrice;
+    }
+    getTransmutationCategory(): TransmutationCategory {
+      return modItemCategory;
     }
   }
   const modItemSingleton=new modItem();
