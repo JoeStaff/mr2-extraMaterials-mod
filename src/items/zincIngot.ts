@@ -15,47 +15,33 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItemId="zincOre";
-  const modItemName="Zinc Ore";
-  const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
-  const modItemTemplate="copperOre";
-  const modItemBasePrice=62;
-  const modItemElement=MR2.SpellElement.Earth;
+  const modItemId="zincIngot";
+  const modItemName="Zinc Ingot";
+  const modItemDesc="Processed Zinc Ore. Probably not best used for equipment in this state.";
+  const modItemTemplate="copperIngot";
+  const modItemBasePrice=550;
+  const modItemElement=MR2.SpellElement.Fire;
 
   const modItemLvlReq={
-    Earth: 28,
+    Fire: 14,
   };
   const modItemReq={
     resources: {
-      Mana: 450,
-      EarthEssence: 20000,
+      Mana: 375,
+      FireEssence: 13750,
     },
-    items: {},
+    items: {
+      "zincOre":6
+    },
   };
 
   const modItemDropTable: modItemDrop[]=[
     {
-      enemy:"goblin",
-      amount: 1,
-      chance: 0.1
-    },
-    {
-      enemy:"goblinSharpshooter",
-      amount: 1,
-      chance: 0.1
-    },
-    {
       enemy:"goblinChief",
-      amount: 2,
+      amount: 1,
       chance: 1
-    },
-    {
-      enemy:"goblinDoctor",
-      amount: 2,
-      chance: .2
-    },
+    }
   ];
-
   modItemDropTable.forEach(table => {
     const originalFunction=MR2.Enemies.getById(table.enemy).getItemsAwardedBase;
     MR2.Enemies.getById(table.enemy).getItemsAwardedBase=(state:GameState)=>{

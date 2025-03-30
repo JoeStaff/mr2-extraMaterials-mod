@@ -15,61 +15,76 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItemId="zincOre";
-  const modItemName="Zinc Ore";
-  const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
-  const modItemTemplate="copperOre";
-  const modItemBasePrice=62;
-  const modItemElement=MR2.SpellElement.Earth;
+  const modItemId="sulfur";
+  const modItemName="Sulfur";
+  const modItemDesc="A small pile of sulfer. A naturally volcanic element most commonly identified from its smell.";
+  const modItemTemplate="venomPowder";
+  const modItemBasePrice=250;
+  const modItemElement=MR2.SpellElement.Fire;
 
   const modItemLvlReq={
+    Fire: 28,
     Earth: 28,
   };
   const modItemReq={
     resources: {
-      Mana: 450,
-      EarthEssence: 20000,
+      Mana: 1500,
+      FireEssence: 25000,
+      EarthEssence: 25000,
     },
-    items: {},
+    items: {
+    },
   };
 
+  const modItemDropAmount=1;
+  const modItemDropChance=0.1;
   const modItemDropTable: modItemDrop[]=[
     {
-      enemy:"goblin",
-      amount: 1,
-      chance: 0.1
+      enemy:"blazingTurtle",
+      amount:1,
+      chance:1
     },
     {
-      enemy:"goblinSharpshooter",
-      amount: 1,
-      chance: 0.1
+      enemy:"mummy",
+      amount:2,
+      chance:0.1
     },
     {
-      enemy:"goblinChief",
-      amount: 2,
-      chance: 1
+      enemy:"psionCobra",
+      amount:2,
+      chance:0.1
     },
     {
-      enemy:"goblinDoctor",
-      amount: 2,
-      chance: .2
+      enemy:"sphinxProtector",
+      amount:2,
+      chance:0.1
+    },
+    {
+      enemy:"mummyLord",
+      amount:2,
+      chance:0.1
+    },
+    {
+      enemy:"flamingBones",
+      amount:3,
+      chance:1
     },
   ];
 
-  modItemDropTable.forEach(table => {
-    const originalFunction=MR2.Enemies.getById(table.enemy).getItemsAwardedBase;
-    MR2.Enemies.getById(table.enemy).getItemsAwardedBase=(state:GameState)=>{
+  for(let enemy in modItemDropTable){
+    const originalFunction=MR2.Enemies.getById(enemy).getItemsAwardedBase;
+    MR2.Enemies.getById(enemy).getItemsAwardedBase=(state:GameState)=>{
       const loot = originalFunction.call(this,state);
       const newItem: EnemyLoot ={
         itemId: modItemId,
-        amount: table.amount,
-        chance: table.chance,
+        amount: modItemDropAmount,
+        chance: modItemDropChance,
       }
       if(!loot.some(loot => loot.itemId === newItem.itemId))
         loot.push(newItem);
       return loot;
     }
-  });
+  };
 
   class modItem extends (MR2.Item) {
     getId(): string {

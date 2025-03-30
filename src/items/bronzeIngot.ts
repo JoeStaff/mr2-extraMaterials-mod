@@ -5,7 +5,6 @@ import { Item, ItemParams } from "magic-research-2-modding-sdk/modding-decs/back
 import { ItemTagEnum } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
 import { Resource } from "magic-research-2-modding-sdk/modding-decs/backend/Resources";
 import { SpellElement, SpellElementType } from "magic-research-2-modding-sdk/modding-decs/backend/spells/Elements";
-import { modItemDrop } from "../extraMaterialsMod";
 
 export function modItem(MR2: MR2Globals) {
 
@@ -15,45 +14,33 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItemId="zincOre";
-  const modItemName="Zinc Ore";
-  const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
-  const modItemTemplate="copperOre";
-  const modItemBasePrice=62;
-  const modItemElement=MR2.SpellElement.Earth;
+  const modItemId="bronzeIngot";
+  const modItemName="Bronze Ingot";
+  const modItemDesc="An ingot of bronze alloy. Famously used for hard and corrosive resistant armor and weapons.";
+  const modItemTemplate="copperIngot";
+  const modItemBasePrice=800;
+  const modItemElement=MR2.SpellElement.Fire;
 
   const modItemLvlReq={
-    Earth: 28,
+    Fire: 18,
   };
   const modItemReq={
     resources: {
-      Mana: 450,
-      EarthEssence: 20000,
+      Mana: 500,
+      FireEssence: 20000,
     },
-    items: {},
+    items: {
+      "zincIngot":1,
+      "copperIngot":1,
+    },
   };
 
-  const modItemDropTable: modItemDrop[]=[
+  const modItemDropTable=[
     {
-      enemy:"goblin",
+      enemy:"sphinxProtector",
       amount: 1,
-      chance: 0.1
-    },
-    {
-      enemy:"goblinSharpshooter",
-      amount: 1,
-      chance: 0.1
-    },
-    {
-      enemy:"goblinChief",
-      amount: 2,
-      chance: 1
-    },
-    {
-      enemy:"goblinDoctor",
-      amount: 2,
-      chance: .2
-    },
+      chance: 0.1,
+    }
   ];
 
   modItemDropTable.forEach(table => {

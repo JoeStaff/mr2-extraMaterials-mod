@@ -15,44 +15,35 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItemId="zincOre";
-  const modItemName="Zinc Ore";
-  const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
-  const modItemTemplate="copperOre";
-  const modItemBasePrice=62;
+  const modItemId="saltPeter";
+  const modItemName="Salt Peter";
+  const modItemDesc="A small pile of salt peter. Made of potassium nitrate, salt peter has a wide range of uses from medicine to oxidizers.";
+  const modItemTemplate="venomPowder";
+  const modItemBasePrice=350;
   const modItemElement=MR2.SpellElement.Earth;
 
   const modItemLvlReq={
-    Earth: 28,
+    Earth: 45,
   };
   const modItemReq={
     resources: {
-      Mana: 450,
-      EarthEssence: 20000,
+      Mana: 1000,
+      EarthEssence: 45000,
     },
-    items: {},
+    items: {
+    },
   };
 
   const modItemDropTable: modItemDrop[]=[
     {
-      enemy:"goblin",
-      amount: 1,
-      chance: 0.1
+      enemy:"sandDweller",
+      amount:2,
+      chance:1
     },
     {
-      enemy:"goblinSharpshooter",
-      amount: 1,
-      chance: 0.1
-    },
-    {
-      enemy:"goblinChief",
-      amount: 2,
-      chance: 1
-    },
-    {
-      enemy:"goblinDoctor",
-      amount: 2,
-      chance: .2
+      enemy:"crystalCanine",
+      amount:2,
+      chance:0.1
     },
   ];
 

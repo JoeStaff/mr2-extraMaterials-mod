@@ -5,7 +5,6 @@ import { Item, ItemParams } from "magic-research-2-modding-sdk/modding-decs/back
 import { ItemTagEnum } from "magic-research-2-modding-sdk/modding-decs/backend/items/ItemTagEnum";
 import { Resource } from "magic-research-2-modding-sdk/modding-decs/backend/Resources";
 import { SpellElement, SpellElementType } from "magic-research-2-modding-sdk/modding-decs/backend/spells/Elements";
-import { modItemDrop } from "../extraMaterialsMod";
 
 export function modItem(MR2: MR2Globals) {
 
@@ -15,44 +14,47 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItemId="zincOre";
-  const modItemName="Zinc Ore";
-  const modItemDesc="Ore. Needs to be processed to be able to actually utilize it.";
-  const modItemTemplate="copperOre";
-  const modItemBasePrice=62;
-  const modItemElement=MR2.SpellElement.Earth;
+  const modItemId="charcoal";
+  const modItemName="Charcoal";
+  const modItemDesc="A chunk of charcoal. Typically made from burnt wood";
+  const modItemTemplate="thickHide";
+  const modItemBasePrice=250;
+  const modItemElement=MR2.SpellElement.Fire;
 
   const modItemLvlReq={
-    Earth: 28,
+    Fire: 12,
+    Earth: 12,
   };
   const modItemReq={
     resources: {
-      Mana: 450,
-      EarthEssence: 20000,
+      Mana: 600,
+      FireEssence: 3000,
+      EarthEssence: 3000,
     },
-    items: {},
+    items: {
+    },
   };
 
-  const modItemDropTable: modItemDrop[]=[
+  const modItemDropTable=[
+    {
+      enemy:"blazingTurtle",
+      amount: 1,
+      chance: 1,
+    },
     {
       enemy:"goblin",
       amount: 1,
-      chance: 0.1
+      chance: 0.05,
     },
     {
-      enemy:"goblinSharpshooter",
-      amount: 1,
-      chance: 0.1
+      enemy:"needler",
+      amount: 3,
+      chance: 0.1,
     },
     {
-      enemy:"goblinChief",
-      amount: 2,
-      chance: 1
-    },
-    {
-      enemy:"goblinDoctor",
-      amount: 2,
-      chance: .2
+      enemy:"thrivingNeedler",
+      amount: 5,
+      chance: 1,
     },
   ];
 
