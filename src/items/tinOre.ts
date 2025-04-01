@@ -10,30 +10,30 @@ export function modItem(MR2: MR2Globals) {
   ////////////////////////////
   
   const modItem: modItemTemplate ={
-    id: "zincOre",
-    name: "Zinc Ore",
+    id: "tinOre",
+    name: "Tin Ore",
     description: "Ore. Needs to be processed to be able to actually utilize it.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Ore,
-    basePrice: 62,
+    basePrice: 70,
     lootPool: [
       {
-        enemy:"goblin",
-        amount: 1,
-        chance: 0.1
-      },
-      {
-        enemy:"goblinSharpshooter",
-        amount: 1,
-        chance: 0.1
-      },
-      {
-        enemy:"goblinChief",
-        amount: 2,
-        chance: 1
-      },
-      {
         enemy:"goblinDoctor",
+        amount: 1,
+        chance: 0.1
+      },
+      {
+        enemy:"sewerFish",
+        amount: 1,
+        chance: 0.1
+      },
+      {
+        enemy:"desertPredator",
+        amount: 2,
+        chance: .2
+      },
+      {
+        enemy:"scarab",
         amount: 2,
         chance: .2
       },
@@ -41,12 +41,12 @@ export function modItem(MR2: MR2Globals) {
     canTransmute: true,
     element: MR2.SpellElement.Earth,
     levelRequirement: {
-      Earth: 28,
+      Earth: 30,
     },
     craftingMaterials: {
       resources: {
-        Mana: 450,
-        EarthEssence: 20000,
+        Mana: 475,
+        EarthEssence: 22000,
       },
       items: {},
     }

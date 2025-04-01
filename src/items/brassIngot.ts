@@ -10,35 +10,32 @@ export function modItem(MR2: MR2Globals) {
   ////////////////////////////
 
   const modItem: modItemTemplate = {
-    id: "saltPeter",
-    name: "Salt Peter",
-    description: "A small pile of salt peter. Made of potassium nitrate, salt peter has a wide range of uses from medicine to oxidizers.",
+    id: "brassIngot",
+    name: "Brass Ingot",
+    description: "An ingot of brass alloy. Famously used for hard and corrosive resistant armor and weapons.",
     tags: [ItemTagEnum.Material],
-    category: TransmutationCategory.Other,
-    basePrice: 350,
+    category: TransmutationCategory.Ingot,
+    basePrice: 800,
     lootPool: [
       {
-        enemy:"sandDweller",
-        amount:2,
-        chance:1
-      },
-      {
-        enemy:"crystalCanine",
-        amount:2,
-        chance:0.1
-      },
+        enemy:"sphinxProtector",
+        amount: 1,
+        chance: 0.1,
+      }
     ],
     canTransmute: true,
-    element: MR2.SpellElement.Earth,
+    element: MR2.SpellElement.Fire,
     levelRequirement: {
-      Earth: 45,
+      Fire: 18,
     },
     craftingMaterials: {
       resources: {
-        Mana: 1000,
-        EarthEssence: 45000,
+        Mana: 500,
+        FireEssence: 20000,
       },
       items: {
+        "zincIngot":1,
+        "copperIngot":1,
       },
     }
   };

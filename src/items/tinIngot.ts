@@ -10,31 +10,25 @@ export function modItem(MR2: MR2Globals) {
   ////////////////////////////
 
   const modItem: modItemTemplate ={
-    id: "zincIngot",
-    name: "Zinc Ingot",
-    description: "Processed Zinc Ore. Probably not best used for equipment in this state.",
+    id: "tinIngot",
+    name: "Tin Ingot",
+    description: "Processed Tin Ore. Soft and malleable, great for making food-safe products.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Ingot,
-    basePrice: 550,
-    lootPool: [
-      {
-        enemy:"goblinChief",
-        amount: 1,
-        chance: 1
-      }
-    ],
+    basePrice: 570,
+    lootPool: [],
     canTransmute: true,
     element: MR2.SpellElement.Fire,
     levelRequirement: {
-      Fire: 14,
+      Fire: 16,
     },
     craftingMaterials:{
       resources: {
-        Mana: 375,
-        FireEssence: 13750,
+        Mana: 380,
+        FireEssence: 15750,
       },
       items: {
-        "zincOre":6
+        "tinOre":6
       },
     }
   };
