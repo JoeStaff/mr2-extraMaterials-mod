@@ -9,6 +9,9 @@ import { modItem as sulfur } from "./items/sulfur";
 import { modItem as saltPeter } from "./items/saltPeter";
 import { modItem as gunPowder } from "./items/gunPowder";
 import { modItem as charcoal } from "./items/charcoal";
+import { modItem as wood } from "./items/wood";
+import { modItem as ironOre } from "./items/ironOre";
+import { modItem as ironIngot } from "./items/ironIngot";
 
 const PACKAGE = require("../package.json");
 
@@ -29,6 +32,9 @@ export function load(MR2: MR2Globals) {
   sulfur(MR2);
   saltPeter(MR2);
   gunPowder(MR2);
+  wood(MR2);
+  ironOre(MR2);
+  ironIngot(MR2);
 
   // let itemInfo="";
   // MR2.Items.getAll().forEach(item => {
