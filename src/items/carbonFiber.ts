@@ -9,28 +9,30 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItem: modItemTemplate = {
-    id: "wood",
-    name: "Wood",
-    description: "A piece of wood. Primitive building material",
+  const modItem: modItemTemplate ={
+    id: "carbonFiber",
+    name: "Carbon Fiber",
+    description: "A lightweight and extremely durable material, like hardened fiberglass. Rare, given current technology.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Other,
-    basePrice: 100,
+    basePrice: 200000,
     lootPool: [
     ],
     canTransmute: true,
-    element: MR2.SpellElement.Fire,
+    element: MR2.SpellElement.Earth,
     levelRequirement: {
-      Earth: 6,
+      Earth: 55,
     },
-    craftingMaterials: {
+    craftingMaterials:{
       resources: {
-        Mana: 200,
-        EarthEssence: 1000,
+        Mana: 7500,
+        EarthEssence: 30000000,
       },
       items: {
+        "charcoal":6,
+        "resin":1
       },
     }
   };
-  addModItem(MR2, modItem);
+  addModItem(MR2,modItem);
 }

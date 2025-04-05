@@ -12,7 +12,7 @@ export function modItem(MR2: MR2Globals) {
   const modItem: modItemTemplate = {
     id: "charcoal",
     name: "Charcoal",
-    description: "A chunk of charcoal. Typically made from burnt wood.",
+    description: "A chunk of charcoal. Typically made from burning wood.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Other,
     basePrice: 250,
@@ -51,6 +51,7 @@ export function modItem(MR2: MR2Globals) {
         EarthEssence: 3000,
       },
       items: {
+        "wood":1
       },
     }
   };

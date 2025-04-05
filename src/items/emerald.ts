@@ -9,28 +9,27 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItem: modItemTemplate = {
-    id: "wood",
-    name: "Wood",
-    description: "A piece of wood. Primitive building material",
+  const modItem: modItemTemplate ={
+    id: "emerald",
+    name: "Emerald",
+    description: "Emerald gem. A beautiful green colored gem.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Other,
-    basePrice: 100,
+    basePrice: 20500,
     lootPool: [
     ],
     canTransmute: true,
-    element: MR2.SpellElement.Fire,
+    element: MR2.SpellElement.Earth,
     levelRequirement: {
-      Earth: 6,
+      Earth: 45,
     },
-    craftingMaterials: {
+    craftingMaterials:{
       resources: {
-        Mana: 200,
-        EarthEssence: 1000,
+        Mana: 3000,
+        EarthEssence: 2500000,
       },
-      items: {
-      },
+      items: {},
     }
   };
-  addModItem(MR2, modItem);
+  addModItem(MR2,modItem);
 }

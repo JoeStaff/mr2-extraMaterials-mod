@@ -9,28 +9,29 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItem: modItemTemplate = {
-    id: "wood",
-    name: "Wood",
-    description: "A piece of wood. Primitive building material",
+  const modItem: modItemTemplate ={
+    id: "titaniumIngot",
+    name: "Titanium Ingot",
+    description: "Processed Titanium Ore. An abundant material useful for typical tools.",
     tags: [ItemTagEnum.Material],
-    category: TransmutationCategory.Other,
-    basePrice: 100,
+    category: TransmutationCategory.Ingot,
+    basePrice: 6500,
     lootPool: [
     ],
     canTransmute: true,
     element: MR2.SpellElement.Fire,
     levelRequirement: {
-      Earth: 6,
+      Fire: 33,
     },
-    craftingMaterials: {
+    craftingMaterials:{
       resources: {
-        Mana: 200,
-        EarthEssence: 1000,
+        Mana: 3000,
+        FireEssence: 250000,
       },
       items: {
+        "titaniumOre":6
       },
     }
   };
-  addModItem(MR2, modItem);
+  addModItem(MR2,modItem);
 }

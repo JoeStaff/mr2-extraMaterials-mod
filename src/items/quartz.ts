@@ -9,28 +9,27 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItem: modItemTemplate = {
-    id: "wood",
-    name: "Wood",
-    description: "A piece of wood. Primitive building material",
+  const modItem: modItemTemplate ={
+    id: "quartz",
+    name: "Quartz",
+    description: "A hunk of quartz. A very common crystalline material, is an example of a piezo electric.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Other,
-    basePrice: 100,
+    basePrice: 6500,
     lootPool: [
     ],
     canTransmute: true,
-    element: MR2.SpellElement.Fire,
+    element: MR2.SpellElement.Earth,
     levelRequirement: {
-      Earth: 6,
+      Earth: 33,
     },
-    craftingMaterials: {
+    craftingMaterials:{
       resources: {
-        Mana: 200,
-        EarthEssence: 1000,
+        Mana: 1000,
+        EarthEssence: 25000,
       },
-      items: {
-      },
+      items: {},
     }
   };
-  addModItem(MR2, modItem);
+  addModItem(MR2,modItem);
 }

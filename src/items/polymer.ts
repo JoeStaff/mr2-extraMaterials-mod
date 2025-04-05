@@ -9,28 +9,29 @@ export function modItem(MR2: MR2Globals) {
   //  'modItem' variables.  //
   ////////////////////////////
 
-  const modItem: modItemTemplate = {
-    id: "wood",
-    name: "Wood",
-    description: "A piece of wood. Primitive building material",
+  const modItem: modItemTemplate ={
+    id: "polymer",
+    name: "Polymer",
+    description: "Polymer Plastic. A versatile material with immense uses, but not as strong as an alloy. Rare, given current technology.",
     tags: [ItemTagEnum.Material],
     category: TransmutationCategory.Other,
-    basePrice: 100,
+    basePrice: 40500,
     lootPool: [
     ],
     canTransmute: true,
-    element: MR2.SpellElement.Fire,
+    element: MR2.SpellElement.Earth,
     levelRequirement: {
-      Earth: 6,
+      Earth: 40,
     },
-    craftingMaterials: {
+    craftingMaterials:{
       resources: {
-        Mana: 200,
-        EarthEssence: 1000,
+        Mana: 7000,
+        EarthEssence: 1000000,
       },
       items: {
+        "oil":6
       },
     }
   };
-  addModItem(MR2, modItem);
+  addModItem(MR2,modItem);
 }
